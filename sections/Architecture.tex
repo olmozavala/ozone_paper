@@ -1,0 +1,31 @@
+\subsection{Neural Network Architecture}
+
+The proposed system includes a set of 34 Neural Networks (NNs) that are used 
+to predict the Ozone pollutant 24 hrs after the present time. 
+Each Neural Network is responsible for forecasting Ozone for one of the RAMA's stations. 
+One training example in our system has air quality information 
+at time $t$ and forecasted metorological variables at times $t, t+1, t+2,\cdots t+24$. 
+The output of the model is the ozone value at time $t+24$, which allows the
+goverment to decide if an air quality contingency is necessary one day in advance.
+This knowledge could avoid the population getting affected by high indices of pollution.
+
+The forecast model is implemented using Python and the machine learning library Tensor Flow 
+\cite{tensorflow2015-whitepaper}. The proposed layout for each NN
+is a shallow architecture with two hidden layers and one output layer, all the layers have dense 
+connections and a sigmoid function as the activation function. 
+ The first hidden layer has $N$ units (neurons), where $N$ is the number of input features. The 
+second hidden layer has $2*N$ units, and the output layer has one output unit which predicts the 
+ozone value in 24 hrs. Each layer has equal number of bias units as input units. The
+bias units are used to reduce overfitting.
+The weights of all units, normal units and bias units, are initialized randomly.
+In summary the activation function of a single unit in the first hidden layer becomes:
+\begin{equation}
+	f_j(W,X) = \sigma (\Sigma_{i=1}^N w_{j, i}x_i + b_i )
+\end{equation}
+Where $\sigma$ is the sigmoid functoin, $b_i$ are the weights of the bias units and
+$W$ and $X$ are the weights and activation values of the input layer.  Finally, the 
+optimization algorithm that we use is the Adam Optimizer \cite{adam}.  
+
+The proposed architecture is straightforward, the novelty of our approach
+lies on using meteorological data from a forecast model merged with current
+air quality data to make a prediction for ozone. 

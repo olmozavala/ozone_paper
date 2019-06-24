@@ -1,0 +1,91 @@
+%% Use the option review to obtain double line spacing
+%\documentclass[preprint,authoryear,12pt]{elsarticle}
+
+% Use this option for journal layout.
+%\documentclass[final,authoryear,5p,times,twocolumn]{elsarticle}
+\documentclass[review,authoryear,5p,times,twocolumn]{elsarticle}
+%\documentclass[review,authoryear,12pt]{elsavier/elsarticle}
+
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{tabularx}
+\usepackage{hyperref}
+
+% -----------XML HIGHLIGHT--------------
+\usepackage{listings}
+\usepackage{filecontents}
+
+%\linespread{1.5}
+
+\lstset{
+    upquote=true,
+    basicstyle=\ttfamily,
+    columns=fullflexible,
+    showstringspaces=false,
+    commentstyle=\color{gray}\upshape
+}
+\definecolor{darkblue}{rgb}{0,0,.5}
+\lstdefinelanguage{XML}
+{
+    morestring=[b]",
+    morestring=[s]{>}{<},
+    morecomment=[s]{<?}{?>},
+    stringstyle=\color{black},
+    identifierstyle=\color{darkblue},
+    keywordstyle=\color{cyan},
+    morekeywords={MenuIds,BBOX,server,name,ID,EN,ES,xmlns,version,type}% list your attributes here
+}
+% -----------END XML HIGHLIGHT--------------
+
+\setlength\parindent{0pt}
+
+\journal{Name of Journal}
+
+\begin{document}
+
+\begin{frontmatter}
+    % Read the documents inside the Elsevier folder for more options on authors and title.
+
+    %\title{ Operational air quality forecast system using Neural Networks and forecasted data from the Weather Research and Forecasting Model}
+    \title{ Operational air quality forecast system for Mexico City using Neural 
+    Networks and numerical weather data}
+
+% Next generation of air quality Forecast based on combined Machine learning
+% and Numerical models applied to Mexico CIty
+
+    \author[unamadd]{ Olmo Zavala-Romero} \ead{olmozavala@atmosfera.unam.mx}
+    \author[unamadd]{ Pablo Camacho-Gonzalez} \ead{pablopcg1@ciencias.unam.mx}
+    \author[unamadd]{ Jorge Zavala-Hidalgo} \ead{jzavala@atmosfera.unam.mx}
+    \author[unamadd]{ Agustin R. Garcia} \ead{agustin@atmosfera.unam.mx}
+    \author[unamadd]{ Rosario Romero-Centeno} \ead{rosario@atmosfera.unam.mx}
+    \author[unamadd]{ Octavio Gomez-Ramos} \ead{octavio@atmosfera.unam.mx}
+    \author[unamadd]{ Pavel Oropeza-Alfaro} \ead{poropeza@atmosfera.unam.mx}
+    \author[unamadd]{ Jonathan Hernandez-Moreno} \ead{josejona@atmosfera.unam.mx}
+
+    \address[unamadd]{Center of Atmospheric Sciences, Universidad Nacional Aut\'onoma de M\'exico}
+
+    \input{sections/Abstract.tex}
+
+    \begin{keyword}
+        Deep learning, Neural Networks, Air Quality, Mexico City, WRF, Tensor Flow
+    \end{keyword}
+
+\end{frontmatter}
+
+\input{sections/Intro.tex}
+\input{sections/Methods.tex}
+\input{sections/Architecture.tex}
+\input{sections/Metrics.tex}
+\input{sections/Results.tex}
+\input{sections/Conclusions.tex}
+
+
+\subsection*{Acknowledgments}
+
+\bibliography{Bibliography/Biblio.bib}
+\bibliographystyle{elsarticle-harv}
+
+\end{document} 

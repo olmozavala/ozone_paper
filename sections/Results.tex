@@ -1,0 +1,55 @@
+\section{Operational Mode}
+The system was tested for the year 2017 and it is now been used as an operational forecast
+system since January $1^{\text{st}}$ 2018. The operational system makes predictions every hour and
+the weights of the NNs are updated once every month. The original approach was to update the weights
+of the NNs every hour, but we realized that current data that comes from the RAMA stations 
+have several errors and missing data. To access information from RAMA there are two main choices, download the monthly data of
+previous months or download the latest hourly data of the current month. However, the data
+from previous months has a version with a quality control process and do not contains the 
+same values. This posed 
+a major problem to our system because the NNs are trained with historic (nicely cleaned) data, and
+the operational system uses the current (raw) data.  
+
+To improve the performance of the operational system an hourly climatology for each month 
+of the year was computed for each pollutant, using the historic data from 2000 to 2017. When 
+there is missing values in the raw data of the RAMA stations, the system uses the values of 
+the climatology to make its predictions. 
+
+The operational forecast system is available at \url{http://pronosticos.unam.mx/contaminantes/}.
+
+\section{Results}
+\label{sec:results}
+
+% Explain the different options that we tried so that we can see the improvements (Pablo,Olmo)
+% Which metrics are we using
+
+All calculations of this sytem were performed on a multy GPU system with four Nvidia GeForce GTX 1080 
+graphics cards at 1.9 GHz and 8GB of RAM, with an Intel Xeon E52630 as the main processors, and 64 GB of RAM. 
+
+% MENTION CUDA LIBRARY VERSION AND SPECS OF TENSOR FLOW, WRF VERSION
+
+As mentioned before, in order to quantify the performance of the system it was first tested
+ by training the NNs with data from the years 2000 to 2016 and evaluated for
+the year 2017. In the final operational system, the NNs are trained with data up to the year 2017
+and used to make predictions for the year 2018. 
+
+Figure X shows the average correlation coefficent obtained for each station during the 2017 year. The 
+mean correlation coefficient is Y and the mean 
+
+
+Figure X shows the first week of June for 
+
+In Mexico City the quality of the air is categorized in four types: good, moderate, bad, very bad, and
+extremely bad. These categories are related to the amount of particles in the air of ozone, $PM_{10}$, or
+$PM_{2.5}$. In the specific case of ozone, the thresholds are: 0-70 (good), 71-95 (moderate), 
+(96-154) bas
+
+Table X shows the overall contingency table. This table allows us to measure the performance
+of the system to correctly predict when the air quality will be above the safe levels. In this case
+if any station surpasses the 155 ppm then it is a treath. A true positive is when any of the 
+RAMA stations predicted a value of ozone above 155 ppm and the proposed system also
+predicted a value of ozone above 155 ppm for any station. 
+
+
+
+

@@ -1,0 +1,44 @@
+\section{Data and Methods}
+
+% Explain which data (RAMA) are we using (Pablo,Olmo)
+% Explain how is the WRF configured  (Octavio, Rosario, Pavel)
+% Explain the characteristics of the Cluster for WRF and Zion for this system  (Pavel)
+% Explain the architecture of the system  (Pablo,Olmo)
+
+\subsection{Data}
+The proposed system is trained with air pollution data and meteorological data. 
+The air pollution information comes from  the Automatic Network of Atmospheric Monitoring of Mexico City (RAMA).
+RAMA includes 34 stations that continuously measures: ozone (O$_3$), nitrogen oxides (NO$_\textrm{x}$), sulfur dioxide (SO$_2$), 
+carbon monoxide (CO), particles smaller than 10 micrometers (PM10), and  particles smaller than 2.5 micrometers (PM2.5). 
+The hourly averages of these 6 variables are stored in a PostgreSQL database, together with the location and description of the 34 stations. 
+This database gets updated every hour and the proposed system uses this information to make the forecast. 
+
+ The meteorological information is obtained from a local operational forecasting system of Mexico that
+ is developed at the Center of Atmospheric Sciences (CCA) of the
+ National Autonomous Univeristy of Mexico (UNAM). 
+ This meteorological forecast uses the WRF-ARW model to estimate meteorological conditions
+  in two domains, one for the center of Mexico and one for the whole country. The system 
+ predicts hourly data for the following five days and its executed everyday 
+ in a cluster using 120 Intel Xeon E52670 cores.
+
+ The proposed air quality system uses the following meteorological variables to improve its prognosis:
+ wind, temperature, potential temperature, precipitation, short wave radiation, 
+ downward long wave radiation, and mixed layer hight. Our machine learning 
+ system uses the first 24 forecasted hours for each variable as training data, together
+ with the historic air pollution data. 
+
+To improve the performance of training the Neural Networks, the air pollution database is 
+dumped into CSV files before they are used. In a similar manner, the meteorological information is first 
+first clipped into the area of interest ($19.428^\circ$, $20^\circ$, $-99.127^\circ$, $-98^\circ$), 
+then the data is subsampled into four cuadrants by computing the average value of the meteorological
+variables. Finally, the resulting values are stored in CSV files. 
+
+ The main interst of predicting air quality in any city is to know when the level of contaminants
+ will surpass the safe levels for humans. To improve the performance of the Neural Networks for 
+ this specific cases, data augmentation was applied using a Bootstraping techinque 
+ to increase the number of examples where the amount of pollutans
+ on the air are high. For the training data, from 2000 to 2016, the examples that were above 
+ the 70 percentile of Ozone are duplicated. This improves the performance of the 
+ NN on hours with high contaminants as shown in section \ref{sec:results}.
+
+

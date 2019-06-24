@@ -1,0 +1,98 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Evaluation measurements                     %%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Evaluation measurements for categorical variables}
+The use of different statistics and measures are presented in order to evaluate the prediction performance of this method 
+\cite{METusrGuide}. For categorical variables in this paper the ozone concentrations larger than 0.155 ppm, in a day, are 
+considered for model evaluation performance.
+
+The dichotomous variables are computed based on the contingency table~\ref{cont}. In this table \textbf{P} is the 
+prediction and \textbf{O} represent the observation. 
+
+\begin{table}
+\begin{scriptsize}
+\caption{Contingency table ($2\times2$) in term of counts. The \textbf{n$_\text{i,j}$} values in the table are the counts for each prediction-observation category, where \textbf{i} represents the prediction and \textbf{j} represent the observations. The symbol "." is the sum across the category.}
+\begin{tabular}{|l|c|c|c|}\hline
+ \multirow{2}{*}{Prediction} & \multicolumn{2}{c}{Measurement}\vline & \multirow{2}{*}{Total} \\ \cline{2-3}
+&O=Yes &O=No & \\ \hline
+P = Yes & n$_\textrm{yy}$ &n$_\textrm{yn}$& n$_\textrm{y}.$= n$_\textrm{yy}$ + n$_\textrm{yn}$\\ \hline 
+P = No & n$_\textrm{ny}$ &n$_\textrm{nn}$& n$_\textrm{n}.$= n$_\textrm{ny}$ + n$_\textrm{nn}$\\ \hline 
+Total & n$._\textrm{y}$= n$_\textrm{yy}$ + n$_\textrm{ny}$ &n$._\textrm{n}$= n$_\textrm{yn}$ + n$_\textrm{nn}$&T= n$_\textrm{yy}$+n$_\textrm{ny}$+n$_\textrm{yn}$+n$_\textrm{nn}$ \\ \hline
+\end{tabular}
+\end{scriptsize}
+\label{cont}
+\end{table}
+It is also use the name of ``Hits'' for the value n$_\textrm{yy}$, ``False alarms'' (n$_\textrm{yn}$), ``Misses'' (n$_\textrm{ny}$) and ``Correct rejections'' (n$_\textrm{nn}$). \textbf{T} is the total number of prediction-observation pairs.
+\subsubsection{Accuracy}
+It is the proportion of forecasts that are hits or correct rejection. The value ranges are from 0 t 1. A perfect forecast has an Accuracy value of 1.
+\begin{equation}
+\textrm{ACC}=\frac{n_\textrm{yy}+n_\textrm{nn}}{\textrm{T}}
+\end{equation}
+\subsubsection{Detection Probability (DP)}
+Represent the fraction of events that were correctly fore casted. It has a range from 0 to 1 where a perfect forecast is DP=1.
+\begin{equation}
+\textrm{DP}=\frac{n_\textrm{yy}}{n_\textrm{yy}+n_\textrm{ny}}
+\label{DP}
+\end{equation}
+
+\subsubsection{False Detection Probability (FDP)}
+ The ratio between non-events that were forecast to be events. Also Called False Alarm Rate. FDP varies from 0 to 1; perfect forecast =0.
+ \begin{equation}
+\textrm{FDP}=\frac{n_\textrm{yn}}{n_\textrm{yn}+n_\textrm{nn}}
+\end{equation}
+\subsubsection{Critical Success Index (CSI)}
+ \begin{equation}
+\textrm{CSI}=\frac{n_\textrm{yy}}{n_\textrm{yy}+n_\textrm{yn}+n_\textrm{ny}}
+\label{CSI}
+\end{equation}
+
+It is the proportion of the number of times of the event was correctly predicted to occur to the number of times it was occurred or forecasted,
+\subsubsection{Hanssen-Kuipers Discriminant (H-K)}
+ \begin{equation}
+\textrm{H-K}=\frac{n_\textrm{yy}n_\textrm{nn}-n_\textrm{yn}n_\textrm{ny}}{(n_\textrm{yy}+n_\textrm{ny})(n_\textrm{yn}+n_\textrm{nn})}
+\label{HK}
+\end{equation}
+This measures the ability of the forecast to discriminate between events and nonevents. It has a range from -1 to 1, a value 0 represents no skill and H-K=1 for a perfect score.
+\subsubsection{Hidke Skill Score (HSS)}
+It is the Accuracy corrected by the number of correct forecasts that would be expected by chance.
+ \begin{equation}
+\textrm{HSS}=\frac{n_\textrm{yy}+n_\textrm{nn}-\textrm{C}_2}{\textrm{T}-\textrm{C}_2}
+\label{HSS}
+\end{equation}
+where
+ \begin{equation}
+\textrm{C}_2=\frac{(n_\textrm{yy}+n_\textrm{yn})(n_\textrm{yy}+n_\textrm{ny})+(n_\textrm{ny}+n_\textrm{nn})(n_\textrm{yn}+n_\textrm{nn})}{\textrm{T}}
+\end{equation}
+Perfect forecast has a value of 1, HSS can rage from -$\infty$ to 1.
+\subsection{Evaluation measurements for continuous variables}
+Measurements are based on the general framework from \cite{Murphy1987}. the verification measures are described and defined below. In these definitions, \textsl{p} represents the prediction, \textsl{o} represents observation, and \textsl{n} the prediction-observation pairs number.
+\subsubsection{Pearson Correlation Coefficient (\textbf{r})}
+The coefficient \textbf{r}, measures the strength of linear association between the predictions and observations. It is defined as
+\begin{equation}
+r=\frac{\sum_i^T (p_i-\bar{p})(o_i-\bar{o})}
+{\sqrt[]{\sum(p_i-\bar{p})^2} \sqrt[]{\sum(o_i-\bar{o})^2}} 
+\label{pr}
+\end{equation}
+\textbf{r} can has values from -1 to 1; a perfect correlation has a value of 1 and perfect negative correlation of -1. A value 0 represents that the prediction and observations are not correlated.
+
+\subsubsection{Mean-absolute error (MAE)}
+MEA is less influence by large error and does not depend on the mean error. MAE=0 represent a perfect prediction.
+\begin{equation}
+MAE=\frac{1}{n}\sum_{i=1}^n|p_i-o_i|
+\label{mae}
+\end{equation}
+
+\subsubsection{Index of agreement (dr)}
+The dr is a index proposed by \cite{willmott2012refined} and it is used to evaluate model performance. It is defined as
+
+\begin{eqnarray}
+dr=&1-\frac{\sum_i^n|P_i-O_i|}{c\sum_i^n|O_i-\bar{O}|},\textrm{when}\\
+ &\sum|P_i-O_i|\leq c\sum_i^n|O_i-\bar{O}|\nonumber
+\label{dr}
+\end{eqnarray}
+\begin{eqnarray}
+dr=&\frac{c\sum_i^n|O_i-\bar{O}|}{\sum_i^n|P_i-O_i|}-1,\textrm{when}\\
+ &\sum|P_i-O_i| > c\sum_i^n|O_i-\bar{O}|\nonumber
+\label{dr1}
+\end{eqnarray}
+A value of $d_r=1$ is a perfect agreement between model and observations. $d_r=0.5$, indicates that the sum of error-magnitudes is one half of the perfect-model-deviation sum. $dr=0$ represents that error magnitude sum and perfect deviation sum are equivalent. $d_r=-0.5$ error magnitude sum is twice the model-deviation sum. Values near $-1.0$ show that model-estimated deviations are poor estimates of the observed deviations.

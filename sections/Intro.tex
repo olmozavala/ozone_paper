@@ -1,0 +1,49 @@
+\section{Introduction}
+Air pollution is a major issue for public health that can induce cancer and mortality 
+\cite{Pope2002,SMITH20092091}. In Mexico City, ozone concentrations systematically exceed the 
+health official standard (58\% of the days in 2016 and 2015) \cite{sedema_dias2016}. The 
+risk can be reduced by lower ambient concentrations or by reducing exposure to pollutants. 
+In the case of Mexico City an alert is issued after measuring high ozone 
+levels during an hour, in which case it is not possible to protect the population for 
+the already exposure time period. In order to reduce the hazards of air pollutants an
+operational forecast system is an essential tool.
+
+% A summary of the sate of the art in air quality forecast methods (Agustin)
+\subsection{Air quality forecast systems}
+
+In Mexico  the only official air quality forecast is issued by the Mexico City Environmental 
+Agency (SEDEMA) since February 2017. It uses the WRF-ARW model (Weather Research and 
+Forecasting Model-Advanced Research) \cite{huang2008description} for meteorology, HERMES-Mex 
+(High-Elective Resolution Modeling Emission System for Mexico) as emissions processing tool 
+\cite{GUEVARA2017882} and CMAQ (Community Multi-scale Air Quality) \cite{byun2006review} for 
+its chemical and transport model. Up to now there is not a forecast performance official report for 
+this system.
+Other air quality forecast system uses the MCCM model, MCCM is a three dimensional meteorology 
+model based on the Penn State/ NCAR meteorology model (MM5) with coupled air chemistry  
+\cite{GRELL20001435}, the emissions are for 2005 year, uses the RADM2 chemical mechanism 
+and has been issued by the Atmospheric Science Center at UNAM since 2006 \cite{hernandez2006} 
+and it has been evaluated in 2009 \cite{resendiz2009}. The evaluation performance shows 
+an enhancement when including emissions from surrounding cities such as Toluca and Cuernavaca 
+\cite{garcia2009ozone}. For ozone, the index of agreement has an average of 0.81 in 
+this forecast system. An update of this system uses the WRF-chem \cite{grell2005fully} 
+and the 2008 emissions inventory, up to now there is not an evaluation performance 
+of this new system.
+
+The use of Neural Networks (NN) and other machine learning algorithms for the prediction of 
+air quality have some good results.  One of the first approaches was developed
+for Athens in 2006, NNs were used for the prediction of hourly concentrations of
+$PM_{10}$ \cite{grivas_artificial_2006}.  the development made 
+in Chile \cite{perez_integrated_2006} 
+used NN for the same pollutants. 
+In Mexico, there is a system for the prediction of Ozone in the 
+city of Guadalajara \cite{ignacio_garcia_pronostico_nodate}.
+Other developments focus on the prediction in specific areas, such as the prediction of 
+pollutants near urban arterial of China \cite{cai_prediction_2009}, other approaches in the 
+prediction of the quality index, seek to find which are the best parameters to train the 
+network, using other techniques like SOM \cite{kolehmainen_neural_2001} or genetic algorithms 
+\cite{niska_evolving_2004}.
+Some more advanced development are held in China \cite{jiang_progress_2004} and the city of 
+Perugia,Italy \cite{viotti_atmospheric_2002}
+
+% Introduction to air quality systems using neural networks (Agustin, Pablo)
+
